@@ -13,6 +13,7 @@ jobs:
   dev:
     runs-on: ubuntu-latest
     environment: dev
+    if: github.ref == 'refs/heads/dev'
     steps:
       - uses: actions/checkout@v3
         name: Create dev deployment
@@ -24,6 +25,7 @@ jobs:
   qa:
     runs-on: ubuntu-latest
     environment: qa
+    if: github.ref == 'refs/heads/dev'
     steps:
       - uses: actions/checkout@v3
         name: Create qa deployment
@@ -35,6 +37,7 @@ jobs:
   feature-1:
     runs-on: ubuntu-latest
     environment: feature
+    if: github.ref == 'refs/heads/feature-1'
     steps:
       - uses: actions/checkout@v3
         name: Create feature deployment
@@ -46,6 +49,7 @@ jobs:
   feature-2:
     runs-on: ubuntu-latest
     environment: feature
+    if: github.ref == 'refs/heads/feature-2'
     steps:
       - uses: actions/checkout@v3
         name: Create feature deployment
@@ -57,6 +61,7 @@ jobs:
   staging:
     runs-on: ubuntu-latest
     environment: staging
+    if: github.ref == 'refs/heads/staging'
     steps:
       - uses: actions/checkout@v3
         name: Create staging deployment
@@ -68,6 +73,7 @@ jobs:
   production:
     runs-on: ubuntu-latest
     environment: production
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
         name: Create production deployment

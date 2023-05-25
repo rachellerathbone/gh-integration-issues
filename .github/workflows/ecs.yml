@@ -1,0 +1,83 @@
+name: Build And Deploy
+
+on:
+  push:
+    branches:
+      - dev
+      - feature-1
+      - feature-2
+      - staging
+      - master
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    if: github.ref == 'refs/heads/dev'
+    steps:
+      - uses: actions/checkout@v3
+        name: Create dev deployment
+        id: dev
+        with:
+          token: "${{ github.token }}"
+          target_url: http://my-cool-app.com
+
+  qa:
+    runs-on: ubuntu-latest
+    environment: qa
+    if: github.ref == 'refs/heads/dev'
+    steps:
+      - uses: actions/checkout@v3
+        name: Create qa deployment
+        id: qa
+        with:
+          token: "${{ github.token }}"
+          target_url: http://my-cool-app.com
+
+  feature-1:
+    runs-on: ubuntu-latest
+    environment: feature
+    if: github.ref == 'refs/heads/feature-1'
+    steps:
+      - uses: actions/checkout@v3
+        name: Create feature deployment
+        id: feature-1
+        with:
+          token: "${{ github.token }}"
+          target_url: http://my-cool-app.com
+
+  feature-2:
+    runs-on: ubuntu-latest
+    environment: feature
+    if: github.ref == 'refs/heads/feature-2'
+    steps:
+      - uses: actions/checkout@v3
+        name: Create feature deployment
+        id: feature-2
+        with:
+          token: "${{ github.token }}"
+          target_url: http://my-cool-app.com
+
+  staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    if: github.ref == 'refs/heads/staging'
+    steps:
+      - uses: actions/checkout@v3
+        name: Create staging deployment
+        id: staging
+        with:
+          token: "${{ github.token }}"
+          target_url: http://my-cool-app.com
+
+  production:
+    runs-on: ubuntu-latest
+    environment: production
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+        name: Create production deployment
+        id: production
+        with:
+          token: "${{ github.token }}"
+          target_url: http://my-cool-app.com
